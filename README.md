@@ -23,3 +23,7 @@
         
 springboot版本：2.3.10.RELEASE    
 
+### 较main分支的改进
+
+整合了quartz、mysql、mybatis
+将邮件发送至谁，邮件的内容都存到数据库中，配合quartz的cron表达式定时发送邮件

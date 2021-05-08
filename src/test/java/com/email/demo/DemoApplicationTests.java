@@ -1,6 +1,7 @@
 package com.email.demo;
 
 import com.email.demo.bean.MailMessage;
+import com.email.demo.service.EmailService;
 import com.email.demo.utils.JacksonUtil;
 import com.email.demo.utils.MessageUtil;
 import org.junit.Test;
@@ -10,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -38,6 +40,29 @@ public class DemoApplicationTests {
         MailMessage mailMessage = new MailMessage(user,"hi","你王者好厉害呀！");
         String s = JacksonUtil.objectConvertString(mailMessage);
         System.out.println(s);
+    }
+
+    @Autowired
+    private EmailService emailService;
+
+    @Test
+    public void query(){
+        List<MailMessage> mailMessages = emailService.queryEmail();
+        System.out.println(mailMessages);
+    }
+
+    @Test
+    public void sendBySql(){
+        List<MailMessage> mailMessages = emailService.queryEmail();
+        Iterator<MailMessage> iterator = mailMessages.iterator();
+        while (iterator.hasNext()){
+            MailMessage next = iterator.next();
+            if (next.getFilePath() != null && !next.getFilePath().equals("")){
+                messageUtil.sendCompleteEmail(next);
+            } else {
+                messageUtil.sendEmail(next);
+            }
+        }
     }
 
 }

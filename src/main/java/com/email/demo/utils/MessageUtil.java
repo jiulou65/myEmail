@@ -74,4 +74,14 @@ public class MessageUtil {
         }
     }
 
+    public void sendMyEmail(MailMessage message){
+        if (message.getFilePath() != null && !message.getFilePath().equals("")){
+            // 带附件
+            sendCompleteEmail(message);
+        } else {
+            // 不带附件
+            sendEmail(message);
+        }
+    }
+
 }

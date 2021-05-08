@@ -1,11 +1,13 @@
 package com.email.demo.bean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * 邮件实体类
  */
 public class MailMessage {
+    private Integer id;
     private List<String> toEmail;  // 发送至邮箱
     private String subject;  // 主题
     private String text;  // 正文
@@ -15,6 +17,27 @@ public class MailMessage {
         this.toEmail = toEmail;
         this.subject = subject;
         this.text = text;
+    }
+
+    public MailMessage(Integer id, String toEmail, String subject, String text, String filePath) {
+        this.id = id;
+        List<String> list = new ArrayList<>();
+        String[] to = toEmail.split(",");
+        for (int i = 0; i < to.length; i++) {
+            list.add(to[i]);
+        }
+        this.toEmail = list;
+        this.subject = subject;
+        this.text = text;
+        this.filePath = filePath;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public List<String> getToEmail() {
@@ -47,5 +70,16 @@ public class MailMessage {
 
     public void setFilePath(String filePath) {
         this.filePath = filePath;
+    }
+
+    @Override
+    public String toString() {
+        return "MailMessage{" +
+                "id=" + id +
+                ", toEmail=" + toEmail +
+                ", subject='" + subject + '\'' +
+                ", text='" + text + '\'' +
+                ", filePath='" + filePath + '\'' +
+                '}';
     }
 }

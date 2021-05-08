@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.email.demo.dao.EmailDao" >
+
+    <resultMap id="emailList" type="com.email.demo.bean.MailMessage">
+        <id property="id" column="id"></id>
+        <result property="subject" column="subject"></result>
+        <result property="text" column="text"></result>
+        <result property="filePath" column="filePath"></result>
+    </resultMap>
+
+    <select id="queryEmail" resultType="com.email.demo.bean.MailMessage">
+        select * from email;
+    </select>
+
+</mapper>

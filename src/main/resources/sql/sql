@@ -1,0 +1,9 @@
+create database myEmail;
+create table email(
+    id int(11) primary key,
+    toEmail varchar(64),
+    subject varchar(64),
+    text varchar(255),
+    filePath varchar(255)
+);
+insert into email values(1,"xxx@qq.com,xxx@xx.com","test","hi bob","文件绝对路径");
