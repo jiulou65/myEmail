@@ -1,7 +1,7 @@
 package com.email.demo.utils;
 
 /**
- * 数据VO类
+ * 数据VO类 v1.0
  */
 public class ResultVo {
     private String no;  // 响应码
